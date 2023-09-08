@@ -1,10 +1,9 @@
 #include "monty.h"
 int main(void)
 {
-	char *opcode;
+	char opcode[100];
 	int value;
 	stack_t *stack = NULL;
-	unsigned int line_number = 22;
 	char input[100];
 
 	while (1)
