@@ -5,7 +5,7 @@
   * @line_number: The line number where the push operation was encountered.
   * @value: The integer value to be pushed onto the stack.
   */
-void push(stack_t **stack, unsigned int line_number, int value)
+void push(stack_t **stack, int value)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
 

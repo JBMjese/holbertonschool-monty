@@ -14,7 +14,7 @@ int main(void)
 		{
 			break;
 		}
-		if (sscanf(input, "%ms %d", &opcode, &value) == 2)
+		if (sscanf(input, "%s %d", &opcode, &value) == 2)
 		{	
 			if (strcmp(opcode, "push") == 0)
 			{
