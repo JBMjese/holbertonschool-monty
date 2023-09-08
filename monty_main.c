@@ -18,7 +18,7 @@ int main(void)
 		{	
 			if (strcmp(opcode, "push") == 0)
 			{
-				push(&stack, line_number, value);
+				push(&stack, value);
 			}
 			free(opcode);
 		}
