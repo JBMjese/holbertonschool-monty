@@ -7,6 +7,16 @@
   */
 void push(stack_t **stack, int value)
 {
+	if (!stack)
+	{
+		fprintf(stderr, "L%d: stack not found\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	if (value < INT_MIN || value > INT_MAX)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	stack_t *new_node = malloc(sizeof(stack_t));
 
 	if (new_node == NULL)
@@ -14,7 +24,6 @@ void push(stack_t **stack, int value)
 		perror("Memory allocation failed");
 		exit(EXIT_FAILURE);
 	}
-
 	new_node->n = value;
 	new_node->prev = NULL;
 	new_node->next = *stack;
