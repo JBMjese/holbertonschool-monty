@@ -19,7 +19,6 @@ int main(void)
 			{
 				push(&stack, value);
 			}
-			free(opcode);
 		}
 		else if (strcmp(input, "pall\n") == 0)
 		{
