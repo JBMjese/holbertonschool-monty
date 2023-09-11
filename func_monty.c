@@ -5,7 +5,7 @@
   * @line_num: file's line number
   * Return: address of new element
   */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number, char *buff)
 {
 	char **split_buff;
 	int num;
