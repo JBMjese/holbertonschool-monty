@@ -5,7 +5,7 @@
   * @line_num: file's line number
   * Return: address of new element
   */
-void push(stack_t **stack, unsigned int line_num, int value)
+void push(stack_t **stack, unsigned int line_number, int value)
 {
 	stack_t *new_node;
 	
@@ -36,7 +36,7 @@ void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *h = *stack;
 
-	(void)line_num;
+	(void)line_number;
 
 	while (h)
 	{
