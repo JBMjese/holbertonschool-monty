@@ -11,17 +11,22 @@ void push(stack_t **stack, unsigned int line_number, char *buff)
 	int num;
 	stack_t *new;
 
-	new = malloc(sizeof(stack_t));
-	if (!new)
+	split_buff = _split(buff, " ");
+
+	if (split_buff == NULL || split_buff[1] == NULL)
 	{
-		free(new);
-		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	split_buff = _split(buff, " ");
-
 	num = _atoi(split_buff[1], line_number);
+
+	new = malloc(sizeof(stack_t));
+	if (!new)
+	{
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 
 	new->n = num;
 	new->prev = NULL;
