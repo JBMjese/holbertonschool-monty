@@ -18,7 +18,7 @@ int main(void)
 		{	
 			if (strcmp(opcode, "push") == 0)
 			{
-				push(&stack, line_number, value);
+				push(&stack, line_number,0);
 			}
 		}
 		else if (strcmp(input, "pall\n") == 0)
