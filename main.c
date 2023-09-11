@@ -18,7 +18,7 @@ int main(void)
 		{	
 			if (strcmp(opcode, "push") == 0)
 			{
-				push(&stack, line_number,3);
+				push(&stack, line_number, value);
 			}
 		}
 		else if (strcmp(input, "pall\n") == 0)
@@ -34,6 +34,7 @@ int main(void)
 		{
 			printf("Invalid command\n");
 		}
+		line_number++;
 	}		
 	return (0);
 }
