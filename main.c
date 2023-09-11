@@ -5,6 +5,7 @@ int main(void)
 	int value;
 	stack_t *stack = NULL;
 	char input[100];
+	unsigned int line_number = 1;
 
 	while (1)
 	{
