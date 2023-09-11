@@ -5,26 +5,32 @@
   * @line_num: file's line number
   * Return: address of new element
   */
-void push(stack_t **stack, unsigned int line_number, int value)
+void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node;
-	
-	if (!stack)
+	char **split_buff;
+	int num;
+	stack_t *new;
+
+	new = malloc(sizeof(stack_t));
+	if (!new)
 	{
-		fprintf(stderr, "L%u: stack is NULL\n", line_number);
+		free(new);
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
-	new_node = malloc(sizeof(stack_t));
-	if (!new_node)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-	
-	new_node->n = value;
-	new_node->next = *stack;
-	*stack = new_node;
+	split_buff = _split(buff, " ");
+
+	num = _atoi(split_buff[1], line_number);
+
+	new->n = num;
+	new->prev = NULL;
+	new->next = *stack;
+
+	if (*stack)
+		(*stack)->prev = new;
+	*stack = new;
+	free(split_buff);
 }
 /**
  * pall - Prints all the values on the stack.
@@ -64,4 +70,30 @@ void free_stack(stack_t *stack)
 		stack = stack->next;
 		free(current);
 	}
+}
+/**
+  * _atoi - function converts a string to integer
+  * @str: string to convert
+  * @line_number: file line number
+  * Return: int
+  */
+
+int _atoi(char *str, unsigned int line_number)
+{
+	int num = 0, i = 0;
+	unsigned int valid_nums = 0;
+
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		num = num * 10 + (str[i] - '0');
+		valid_nums++;
+		i++;
+	}
+	if (valid_nums != strlen(str) - 1)
+	{
+		dprintf(STDERR_FILENO, "L%i: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	return (num);
 }

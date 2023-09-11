@@ -5,7 +5,7 @@ int main(void)
 	int value;
 	stack_t *stack = NULL;
 	char input[100];
-	unsigned int line_number = 1;
+	unsigned int line_number = 0;
 
 	while (1)
 	{
@@ -18,7 +18,7 @@ int main(void)
 		{	
 			if (strcmp(opcode, "push") == 0)
 			{
-				push(&stack, line_number, value);
+				push(&stack, line_number);
 			}
 		}
 		else if (strcmp(input, "pall\n") == 0)
