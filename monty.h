@@ -42,8 +42,9 @@ typedef struct instruction_s
 #include <sys/syscall.h>
 #include <string.h>
 
-void push(stack_t **stack, unsigned int line_number, int value);
+void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
-
+int _atoi(char *str, unsigned int line_number);
+char **_split(char *str, char *sep);
 #endif
