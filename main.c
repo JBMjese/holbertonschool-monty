@@ -17,15 +17,16 @@ int main(void)
 		{	
 			if (strcmp(opcode, "push") == 0)
 			{
-				push(&stack, value);
+				push(&stack, line_number, value);
 			}
 		}
 		else if (strcmp(input, "pall\n") == 0)
 		{
-			pall(&stack);	
+			pall(&stack, line_number);	
 		}
-		else if (strcmp(opcode, "exit\n") == 0)
+		else if (strcmp(input, "exit\n") == 0)
 		{
+			free_stack(stack);
 			break; 
 		}
 		else

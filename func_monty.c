@@ -1,47 +1,67 @@
 #include "monty.h"
 /**
-  * push - Pushes an element onto the stack.
-  * @stack: A pointer to a pointer to the top of the stack.
-  * @line_number: The line number where the push operation was encountered.
-  * @value: The integer value to be pushed onto the stack.
+  * push - Pushes an element to the stack
+  * @stack: pointer to head of stack
+  * @line_num: file's line number
+  * Return: address of new element
   */
-void push(stack_t **stack, int value)
+void push(stack_t **stack, unsigned int line_num, int value)
 {
+	stack_t *new_node;
+	
 	if (!stack)
 	{
-		fprintf(stderr, "L%d: stack not found\n", line_number);
+		fprintf(stderr, "L%u: stack is NULL\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	if (value < INT_MIN || value > INT_MAX)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	stack_t *new_node = malloc(sizeof(stack_t));
 
-	if (new_node == NULL)
+	new_node = malloc(sizeof(stack_t));
+	if (!new_node)
 	{
-		perror("Memory allocation failed");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
+	
 	new_node->n = value;
-	new_node->prev = NULL;
 	new_node->next = *stack;
-
-	if (*stack)
-	(*stack)->prev = new_node;
 	*stack = new_node;
 }
 /**
- *  * pall - Prints all the values on the stack.
- *   * @stack: A pointer to a pointer to the top of the stack.
- *    */
-void pall(stack_t **stack)
+ * pall - Prints all the values on the stack.
+ * @stack: Double pointer to the head of the stack.
+ * @line_number: The line number in the Monty bytecode file.
+ * Return: Void
+ */
+void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *current = *stack;
-	while (current != NULL)
+	stack_t *h = *stack;
+
+	(void)line_num;
+
+	while (h)
 	{
-		printf("%d\n", current->n);
-		current = current->next;
+		printf("%d\n", h->n);
+		h = h->next;
+	}
+}
+/**
+  * free_stack - Frees all the nodes in a stack.
+  * @stack: Pointer to the head of the stack.
+  * Description: This function frees all the nodes in the stack and the stack
+  * itself. It should be called when the program is about to exit to avoid
+  * memory leaks.
+  */
+void free_stack(stack_t *stack)
+{
+	stack_t *current;
+
+	if (!stack)
+	return;
+	
+	while (stack)
+	{
+		current = stack;
+		stack = stack->next;
+		free(current);
 	}
 }
