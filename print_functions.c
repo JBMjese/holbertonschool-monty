@@ -19,7 +19,7 @@ void print_all(stack_t **stack, unsigned int line_number)
   * @stack: Pointer to the stack
   * @line_number: Line number of the instruction in the Monty file
   */
-void printTop(stack_t **stack, unsigned int line_number)
+void print_top(stack_t **stack, unsigned int line_number)
 {
 	if (!*stack || !stack)
 	{
