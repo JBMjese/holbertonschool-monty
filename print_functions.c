@@ -33,7 +33,7 @@ void printTop(stack_t **stack, unsigned int line_number)
   * @stack: Pointer to the stack
   * @line_number: Line number of the instruction in the Monty file
   */
-void no_operation(stack_t **stack, unsigned int line_number);
+void no_operation(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
