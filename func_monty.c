@@ -157,3 +157,55 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	ptr[index] = 0;
 	return (ptr);
 }
+/**
+ * execute - Ejecuta las instrucciones de bytecode Monty
+ * @string: Arreglo de cadenas que contiene las instrucciones de bytecode Monty
+ * @stack: Puntero a la cabeza de la pila
+ * Return: void
+ */
+void execute(char *string[], stack_t *stack)
+{
+	int ln, n, i;
+	instruction_t st[] = {
+	{"pall", pall},
+	{"push", push},
+	{"pint", pint},
+	{"add", add},
+	{"nop", nop},
+	{"sub", sub},
+	{"null", NULL}
+	};
+
+	for (ln = 1, n = 0; string[n + 1]; n++, ln++)
+	{
+		if (_strcmp("push", string[n]))
+		push(&stack, ln, pushint(string[n], ln));
+
+		else if (_strcmp("nop", string[n]))
+		nop(&stack, ln);Implementa la función nop (si es necesario)
+
+		else
+		{
+			i = 0;
+
+			while (!_strcmp(st[i].opcode, "null"))
+			{
+				if (_strcmp(st[i].opcode, string[n]))
+				{
+					st[i].f(&stack, ln);
+					break;
+				}
+				i++;
+			}
+			if (_strcmp(st[i].opcode, "null") && !_strcmp(string[n], "\n"))
+			{
+				fprintf(stderr, "L%u: instrucción desconocida %s", ln, strtok(string[n], " "));
+	
+			if (!nlfind(string[n]))
+				fprintf(stderr, "\n");
+				exit(EXIT_FAILURE);
+			}
+		}
+	}
+	free_stack(stack);
+}

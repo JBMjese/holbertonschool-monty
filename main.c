@@ -1,40 +1,44 @@
 #include "monty.h"
-int main(void)
+/*
+ *
+ * main - Monty interpreter
+ * @ac: number of arguments
+ * @av: arguments
+ * Return: 0 on success, other values on error
+ */
+int main(int ac, char *av[])
 {
-	char opcode[100];
-	int value;
 	stack_t *stack = NULL;
-	char input[100];
-	unsigned int line_number = 0;
+	char **string = NULL;
+	FILE *fd;
+	size_t bufsize = 4069;
+	int n;
 
-	while (1)
+	if (ac != 2)
 	{
-		printf("Enter command (push, pall, exit): ");
-		if (fgets(input, sizeof(input), stdin) == NULL)
-		{
-			break;
-		}
-		if (sscanf(input, "%s %d", opcode, &value) == 2)
-		{	
-			if (strcmp(opcode, "push") == 0)
-			{
-				push(&stack, line_number, input);
-			}
-		}
-		else if (strcmp(input, "pall\n") == 0)
-		{
-			pall(&stack, line_number);	
-		}
-		else if (strcmp(input, "exit\n") == 0)
-		{
-			free_stack(stack);
-			break; 
-		}
-		else
-		{
-			printf("Invalid command\n");
-		}
-		line_number++;
-	}		
+		fprintf(stderr,"USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+
+	fd = fopen(av[1], "r");
+	if (fd == NULL)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
+		exit(EXIT_FAILURE);
+	}
+	string = malloc(4069 * sizeof(char *));
+	
+	if (string == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		fclose(fd);
+		exit(EXIT_FAILURE);
+	}
+	for (n = 0; getline(&(string[n]), &bufsize, fd) > 0; n++)
+		;
+						        
+	fclose(fd);
+	execute(string, &stack);
+	free_list(string);
 	return (0);
 }
