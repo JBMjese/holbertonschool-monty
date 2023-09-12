@@ -50,5 +50,5 @@ char **_split(char *str, char *sep);
 void *_calloc(unsigned int nmemb, unsigned int size);
 void execute(char *string[], stack_t *stack);
 void add(stack_t **stack, unsigned int line_num);
-void pint(stack_t **stack, unsigned int line_num);
+void pint(stack_t **stack, unsigned int line_number);
 #endif

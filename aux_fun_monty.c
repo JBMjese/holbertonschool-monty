@@ -6,13 +6,13 @@
  * @line_num: file's line number
  * Return: Void
  */
-void add(stack_t **stack, unsigned int line_num)
+void add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *h = *stack, *n;
 
 	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", line_num);
+		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
@@ -30,11 +30,11 @@ void add(stack_t **stack, unsigned int line_num)
  * @line_num: file's line number
  * Return: Void
  */
-void pint(stack_t **stack, unsigned int line_num)
+void pint(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%u: can't pint, stack empty\n", line_num);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 

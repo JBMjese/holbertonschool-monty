@@ -168,7 +168,7 @@ void execute(char *string[], stack_t *stack)
 	int ln, n, i;
 	instruction_t st[] = {
 	{"pall", pall},
-	{"push", push_with_buffer},
+	{"push", push},
 	{"pint", pint},
 	{"add", add},
 	{"nop", nop},
