@@ -1,44 +1,17 @@
-#include "monty.h"
-/*
- *
- * main - Monty interpreter
- * @ac: number of arguments
- * @av: arguments
- * Return: 0 on success, other values on error
+#include "monty.h" 
+/**
+ * main- Entry point of the Monty interpreter
+ * @argc: Number of command-line arguments
+ * @argv: Array of command-line arguments
+ * Return: 0 on success, or exit(EXIT_FAILURE) on failure
  */
-int main(int ac, char *av[])
+int main(int argc, char **argv)
 {
-	stack_t *stack = NULL;
-	char **string = NULL;
-	FILE *fd;
-	size_t bufsize = 4069;
-	int n;
-
-	if (ac != 2)
+	if (argc != 2)
 	{
-		fprintf(stderr,"USAGE: monty file\n");
+		dprintf(STDERR_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-
-	fd = fopen(av[1], "r");
-	if (fd == NULL)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
-		exit(EXIT_FAILURE);
-	}
-	string = malloc(4069 * sizeof(char *));
-	
-	if (string == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		fclose(fd);
-		exit(EXIT_FAILURE);
-	}
-	for (n = 0; getline(&(string[n]), &bufsize, fd) > 0; n++)
-		;
-						        
-	fclose(fd);
-	execute(string, &stack);
-	free_list(string);
+	monty_handler(argv[1]);
 	return (0);
 }

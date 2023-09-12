@@ -1,60 +1,67 @@
 #include "monty.h"
-
 /**
- * add -  Adds the top two elements of the stack.
- * @stack: pointer to head of stack
- * @line_num: file's line number
- * Return: Void
+ * my_calloc - Allocates memory for an array using malloc
+ * @nmemb: Number of elements in the array
+ * @size: Size of each element in bytes
+ * Return: A pointer to the allocated memory or NULL on failure
  */
-void add(stack_t **stack, unsigned int line_number)
+ void *my_calloc(unsigned int nmemb, unsigned int size)
 {
-	stack_t *h = *stack, *n;
+	unsigned int index = 0;
+	char *ptr = NULL;
 
-	if ((*stack) == NULL || (*stack)->next == NULL)
+	if (nmemb == 0 || size == 0)
+	return (NULL);
+
+	ptr = malloc(nmemb * size);
+	if (!ptr)
 	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
-	if (*stack && (*stack)->next)
-	{
-		n = h->next;
-		n->n += h->n;
-		free(h);
-		*stack = n;
-	}
+	for (; index < (nmemb * size); index++)
+	ptr[index] = 0;
+	return (ptr);
 }
 /**
- * pint -  Prints value at top of stack.
- * @stack: pointer to head of stack
- * @line_num: file's line number
- * Return: Void
+ * my_atoi - Converts a string to an integer
+ * @str: String to convert
+ * @line_number: Line number in the file
+ * Return: The converted integer
  */
-void pint(stack_t **stack, unsigned int line_number)
+int my_atoi(char *str, unsigned int line_number)
 {
-	if (*stack == NULL)
+	int num = 0, i = 0;
+	unsigned int valid_nums = 0;
+
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+		num = num * 10 + (str[i] - '0');
+		valid_nums++;
+		i++;
+	}
+
+	if (valid_nums != strlen(str) - 1)
+	{
+		dprintf(STDERR_FILENO, "L%i: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
-	printf("%d\n", (*stack)->n);
+	return (num);
 }
-
 /**
-  * _split - split string
-  * @str: string
-  * @sep: separator
-  * Return: divided str
-  */
-
-char **_split(char *str, char *sep)
+ * my_split - Splits a string into an array of substrings
+ * @str: String to split
+ * @sep: Separator character
+ * Return: An array of substrings
+ */
+char **my_split(char *str, char *sep)
 {
 	char *aux, **split_str;
 	int i = 0;
 
 	aux = strtok(str, sep);
-	split_str = (char **)_calloc(100, sizeof(char *));
+	split_str = (char **)my_calloc(100, sizeof(char *));
 
 	if (!split_str)
 	{
@@ -62,6 +69,7 @@ char **_split(char *str, char *sep)
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
+
 	while (aux)
 	{
 		split_str[i] = aux;
@@ -69,4 +77,20 @@ char **_split(char *str, char *sep)
 		i++;
 	}
 	return (split_str);
+}
+
+/**
+ * my_free_stack - Frees a linked list
+ * @head: Pointer to the head of the list
+ */
+void my_free_stack(stack_t *head)
+{
+	stack_t *stack;
+
+	while (head)
+	{
+		stack = head->next;
+		free(head);
+		head = stack;
+	}
 }

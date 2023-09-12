@@ -39,20 +39,23 @@ typedef struct instruction_s
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <sys/syscall.h>
 #include <string.h>
 
-/* GLOBAL VARS */
 
 char *buff;
-char **_split(char *str, char *sep);
+
 void push(stack_t **stack, unsigned int line_number);
-void pall(stack_t **stack, unsigned int line_number);
-void free_stack(stack_t *stack);
-int _atoi(char *str, unsigned int line_number);
-char **_split(char *str, char *sep);
-void *_calloc(unsigned int nmemb, unsigned int size);
-void execute(char *string[], stack_t *stack);
-void add(stack_t **stack, unsigned int line_num);
-void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void monty_handler(char *file);
+void (*check_opcodes(void))(stack_t **, unsigned int);
+void print_all(stack_t **stack, unsigned int line_number);
+void printTop(stack_t **stack, unsigned int line_number);
+void noOperation(stack_t **stack, unsigned int line_number);
+void *my_calloc(unsigned int nmemb, unsigned int size);
+int my_atoi(char *str, unsigned int line_number);
+char **my_split(char *str, char *sep);
+void my_free_stack(stack_t *head);
+
 #endif
