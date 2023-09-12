@@ -32,6 +32,6 @@ void monty_handler(char *file)
 		line_number++;
 	}
 	free(buff);
-	free_stack(head);
+	my_free_stack(stack_head);
 	fclose(fd);
 }

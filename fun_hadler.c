@@ -18,7 +18,7 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	split_buff = _split(buff, " ");
+	split_buff = my_split(buff, " ");
 
 	num = my_atoi(split_buff[1], line_number);
 
