@@ -42,6 +42,10 @@ typedef struct instruction_s
 #include <sys/syscall.h>
 #include <string.h>
 
+/* GLOBAL VARS */
+
+char *buff;
+char **_split(char *str, char *sep);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
