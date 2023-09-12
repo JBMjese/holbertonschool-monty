@@ -29,11 +29,11 @@ void printTop(stack_t **stack, unsigned int line_number)
 	printf("%i\n", (*stack)->n);
 }
 /**
-  * nop - Performs no operation
+  * no_operations - Performs no operation
   * @stack: Pointer to the stack
   * @line_number: Line number of the instruction in the Monty file
   */
-void nop(stack_t **stack, unsigned int line_number)
+void no_operation(stack_t **stack, unsigned int line_number);
 {
 	(void)stack;
 	(void)line_number;
