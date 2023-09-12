@@ -5,7 +5,7 @@
  * @size: Size of each element in bytes
  * Return: A pointer to the allocated memory or NULL on failure
  */
- void *my_calloc(unsigned int nmemb, unsigned int size)
+void *my_calloc(unsigned int nmemb, unsigned int size)
 {
 	unsigned int index = 0;
 	char *ptr = NULL;

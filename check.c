@@ -1,7 +1,7 @@
 #include "monty.h"
 /**
   * check_opcodes - Checks for a valid opcode in the input line
-  * Return: A pointer to the function associated with the opcode, or NULL if not found
+  * Return: A pointer to the function, or NULL if not found
   */
 void (*check_opcodes(void))(stack_t **, unsigned int)
 {
@@ -40,4 +40,4 @@ void (*check_opcodes(void))(stack_t **, unsigned int)
 		i++;
 	}
 	return (opcodes[i].f);
-}	
+}

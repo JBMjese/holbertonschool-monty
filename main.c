@@ -1,4 +1,4 @@
-#include "monty.h" 
+#include "monty.h"
 /**
  * main- Entry point of the Monty interpreter
  * @argc: Number of command-line arguments

@@ -15,7 +15,7 @@ void print_all(stack_t **stack, unsigned int line_number)
 	}
 }
 /**
-  * printTop - Prints the top element of the stack
+  * print_top - Prints the top element of the stack
   * @stack: Pointer to the stack
   * @line_number: Line number of the instruction in the Monty file
   */
@@ -29,7 +29,7 @@ void print_top(stack_t **stack, unsigned int line_number)
 	printf("%i\n", (*stack)->n);
 }
 /**
-  * no_operations - Performs no operation
+  * no_operation - Performs no operation
   * @stack: Pointer to the stack
   * @line_number: Line number of the instruction in the Monty file
   */
