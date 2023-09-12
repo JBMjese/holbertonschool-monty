@@ -52,7 +52,7 @@ void monty_handler(char *file);
 void (*check_opcodes(void))(stack_t **, unsigned int);
 void print_all(stack_t **stack, unsigned int line_number);
 void printTop(stack_t **stack, unsigned int line_number);
-void noOperation(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
 void *my_calloc(unsigned int nmemb, unsigned int size);
 int my_atoi(char *str, unsigned int line_number);
 char **my_split(char *str, char *sep);
