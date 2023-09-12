@@ -48,4 +48,7 @@ void free_stack(stack_t *stack);
 int _atoi(char *str, unsigned int line_number);
 char **_split(char *str, char *sep);
 void *_calloc(unsigned int nmemb, unsigned int size);
+void execute(char *string[], stack_t *stack);
+void add(stack_t **stack, unsigned int line_num);
+void pint(stack_t **stack, unsigned int line_num);
 #endif
