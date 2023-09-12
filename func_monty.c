@@ -1,37 +1,31 @@
 #include "monty.h"
+
 /**
-  * push - Pushes an element to the stack
-  * @stack: pointer to head of stack
-  * @line_num: file's line number
-  * Return: address of new element
+  * push - adds a node at stack
+  * @stack: nodes
+  * @line_number: file line number
   */
-void push(stack_t **stack, unsigned int line_number, char *buff)
+void push(stack_t **stack, unsigned int line_number)
 {
 	char **split_buff;
 	int num;
 	stack_t *new;
-
-	split_buff = _split(buff, " ");
-
-	if (split_buff == NULL || split_buff[1] == NULL)
-	{
-		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-
-	num = _atoi(split_buff[1], line_number);
-
 	new = malloc(sizeof(stack_t));
+	
 	if (!new)
 	{
+		free(new);
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
+	split_buff = _split(buff, " ");
+
+	num = _atoi(split_buff[1], line_number);
+
 	new->n = num;
 	new->prev = NULL;
 	new->next = *stack;
-
 	if (*stack)
 		(*stack)->prev = new;
 	*stack = new;
